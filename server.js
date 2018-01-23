@@ -4,7 +4,7 @@ var methodOverride = require('method-override')
 var path = require('path');
 
 var app = express();
-var PORT = 3000;
+var PORT = process.env.PORT ||  3000;
 
 app.use(methodOverride('X-HTTP-Method-Override'))
 
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 var exphbs = require("express-handlebars");
 
-app.use(express.static(path.join(__dirname, 'app/public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
@@ -47,6 +47,34 @@ app.get("/", function(req, res) {
     res.render("index", { pizzas: data });
   });
 });
+
+app.post("/newPizza", function(req, res) {
+  
+  connection.query("INSERT INTO pizzas (pizza_name) VALUES (?)", [req.body.make], function(err, result) {
+    if (err) throw err;
+
+    res.redirect("/");
+  });
+});
+
+app.post("/devourPizza", function(req, res) {
+  console.log("devour works")
+  connection.query("UPDATE pizzas SET devoured = 1 WHERE id = ?", [req.body.pizzaId], function(err, result){
+    res.redirect("/")
+  });
+
+});
+
+
+// app.post("/redoPizza", function(req, res) {
+  
+//     connection.query("UPDATE pizzas set devoured (pizza_name) VALUES (?)", [req.body.redo], function(err, result) {
+//       if (err) throw err;
+  
+//       res.redirect("/");
+//     });
+// });
+
 
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
