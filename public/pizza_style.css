@@ -1,12 +1,18 @@
 body{
-    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrGJt6twST8Au3v3lzB5t6g3ygnEHumc1I6MbaTtSVpXnvgQJe");
+    background: rgb(189, 136, 67) url("img/pizzpatt.jpg"); 
+
 }
+
 section{
-    background: wheat;
+    background: rgb(255, 241, 224) ;
     width: 60%;
     height: auto;
     margin-left: 7%;
+    margin-top: 3%;
+    padding-top: 1%;
     padding-left: 25%;
+    padding-bottom: 2%; 
+    border-radius: 10px;
 
 }
 h1{
@@ -14,5 +20,5 @@ h1{
     font-size: 60px;
 }
 h3{
-    font-family: 'Lily Script One', cursive;
+    font-family: 'Charmonman', cursive;
 }

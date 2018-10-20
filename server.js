@@ -23,7 +23,7 @@ app.set("view engine", "handlebars");
 var mysql = require("mysql");
 
 var connection = mysql.createConnection({
-  host: "localhost",
+  host: process.env.PORT || "localhost",
   user: "root",
   password: "root",
   database: "pizza_db"
